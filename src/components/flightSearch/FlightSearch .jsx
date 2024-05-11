@@ -45,17 +45,6 @@ const FlightSearch = ({ flightData,successMessage }) => {
         });
 
         setSearchResults(results);
-        // Reset the form input values
-        setDeparture('');
-        setArrival('');
-        setDate('');
-        setSelectedDayMinus('');
-        setSelectedDayPlus('');
-        setTime('');
-        setAdt('');
-        setPeople(1);
-        setIsChecked(false);
-        setSelectedOption('');
 
     };
  
