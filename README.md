@@ -1,6 +1,6 @@
 # React + Vite
 
-[Live Link:] https://flight-app-delta.vercel.app/
+Live Link: https://flight-app-delta.vercel.app/
 
 Currently, two official plugins are available:
 
