@@ -7,28 +7,34 @@ const FlightSearch = ({ flightData }) => {
     const [people, setPeople] = useState(1);
     const [searchResults, setSearchResults] = useState([]);
 
-    //console.log("Search Results:", searchResults);
+    // console.log("SearchResults:", searchResults);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        // console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
-        // console.log("User Input:");
-        // console.log("Departure:", departure);
-        // console.log("Arrival:", arrival);
-        // console.log("Date:", date);
-        // console.log("People:", people);
+
         // Filter flight data based on user input
         const results = flightData.filter(flight => {
-            const departureCode = flight.itineraries.map(itinerary => itinerary.segments.map(segment => segment.departure.iataCode));
-            
-            console.log("Departure Code:", departureCode);
-    
-            return [departureCode]
+            const departureMatches = flight.itineraries.some(itinerary =>
+                itinerary.segments.some(segment =>
+                    segment.departure.iataCode.toUpperCase().includes(departure.toUpperCase())
+                )
+            );
+
+            const arrivalMatches = flight.itineraries.some(itinerary =>
+                itinerary.segments.some(segment =>
+                    segment.arrival.iataCode.toUpperCase().includes(arrival.toUpperCase())
+                )
+            );
+
+            console.log("Departure Matches:", departureMatches);
+            console.log("Arrival Matches:", arrivalMatches);
+
+            return departureMatches && arrivalMatches;
         });
-    
+
         setSearchResults(results);
     };
+
    
     
 
