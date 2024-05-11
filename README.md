@@ -1,6 +1,6 @@
 # React + Vite
 
-[Live Link:] https://flight-amber.vercel.app/
+[Live Link:] https://flight-booking-application-beta.vercel.app/
 
 Currently, two official plugins are available:
 
