@@ -45,7 +45,7 @@ const Home = () => {
 
                     {activeTab === 2 && (
                         <>
-                            <FlightSearch flightData={flightData.flightOffer} /> 
+                            <FlightSearch flightData={flightData.flightOffer} successMessage={flightData.message} /> 
                         </>
                     )}
                     {activeTab === 3 && (
