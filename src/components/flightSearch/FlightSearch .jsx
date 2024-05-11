@@ -7,7 +7,7 @@ const FlightSearch = ({ flightData }) => {
     const [people, setPeople] = useState(1);
     const [searchResults, setSearchResults] = useState([]);
 
-     console.log("SearchResults:", searchResults);
+    console.log("SearchResults:", searchResults);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,11 +28,11 @@ const FlightSearch = ({ flightData }) => {
 
             console.log("Departure Matches:", departureMatches);
             console.log("Arrival Matches:", arrivalMatches);
-
             return departureMatches && arrivalMatches;
         });
 
         setSearchResults(results);
+        console.log("filterResult:", results);
     };
 
    
@@ -88,29 +88,45 @@ const FlightSearch = ({ flightData }) => {
                 <table>
                     <thead>
                         <tr>
-                            <th className='px-8'>Flight</th>
-                            <th className='px-8'>AIRCRAFT</th>
-                            <th className='px-8'>Class</th>
-                            <th className='px-8'>Route</th>
-                            <th className='px-8'>Departure</th>
-                            <th className='px-8'>Arrival</th>
-                            <th className='px-8'>Duration</th>
-                            <th className='px-8'>Price</th>
+                            <th className='px-4'>Flight</th>
+                            <th className='px-4'>AIRCRAFT</th>
+                            <th className='px-4'>Class</th>
+                            <th className='px-4'>FARE</th>
+                            <th className='px-4'>Route</th>
+                            <th className='px-4'>Departure</th>
+                            <th className='px-4'>Arrival</th>
+                            <th className='px-4'>Duration</th>
+                            <th className='px-4'>Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {searchResults.map((flight, index) => (
-                                <tr key={index}>
-                                    <td className='px-8'>{flight.itineraries[0].segments[0].flightNumber}</td>
-                                    <td className='px-8'>{flight.itineraries[0].segments[0].departure.iataCode}</td>
-                                    <td className='px-8'>{flight.class[0][0]}</td>
-                                    <td className='px-8'>{flight.itineraries[0].segments.map(segment => segment.departure.iataCode).join('-')}</td>
-                                    <td className='px-8'>{flight.itineraries[0].segments[0].departure.at}</td>
-                                    <td className='px-8'>{flight.itineraries[0].segments[1].arrival.at}</td>
-                                    <td className='px-8'>{flight.itineraries[0].duration}</td>
-                                    <td className='px-8'>{flight.price}</td>
-                                </tr>
-                            ))}
+                        {searchResults.map((flight, index) => {
+                            // Filter segments based on user's selected departure and arrival locations
+                            const filteredSegments = flight.itineraries[0].segments.filter(segment => {
+                                return segment.departure.iataCode.toUpperCase() === departure.toUpperCase() &&
+                                    segment.arrival.iataCode.toUpperCase() === arrival.toUpperCase();
+                            });
+
+                            // Display only if there are filtered segments
+                            if (filteredSegments.length > 0) {
+                                return (
+                                    <tr key={index}>
+                                        <td className='px-4'>{filteredSegments[0].marketingCarrier} {filteredSegments[0].aircraft}</td>
+                                        <td className='px-4'>{filteredSegments[0].flightNumber}</td>
+                                        <td className='px-4'>{flight.class[0][0]}</td>
+                                        <td className='px-4'>{flight.fareBasis[0][0]}</td>
+                                        <td className='px-4'>{filteredSegments.map(segment => segment.departure.iataCode)}- {filteredSegments.map(segment => segment.arrival.iataCode)}</td>
+                                        <td className='px-4'>{filteredSegments[0].departure.at}</td>
+                                        <td className='px-4'>{filteredSegments[filteredSegments.length - 1].arrival.at}</td>
+                                        <td className='px-4'>{flight.itineraries[0].duration}</td>
+                                        <td className='px-4'>{flight.price}</td>
+                                    </tr>
+                                );
+                            } else {
+                                // If no matching segments found, return null
+                                return null;
+                            }
+                        })}
                     </tbody>
                 </table>
             </div>
