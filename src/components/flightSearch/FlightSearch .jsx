@@ -216,15 +216,17 @@ const FlightSearch = ({ flightData,successMessage }) => {
                                         if (filteredSegments.length > 0) {
                                             return (
                                                 <tr key={index} className='border-b border-solid border-red-500'>
-                                                    <td className='px-3 py-2 text-[14px] text-nowrap'>{filteredSegments[0].marketingCarrier} {filteredSegments[0].aircraft}</td>
-                                                    <td className='px-3 py-2 text-[14px] text-nowrap'>{filteredSegments[0].flightNumber}</td>
-                                                    <td className='px-3 py-2 text-[14px] text-nowrap'>{flight.class[0][0]}</td>
-                                                    <td className='px-3 py-2 text-[14px] text-nowrap'>{flight.fareBasis[0][0]}</td>
-                                                    <td className='px-3 py-2 text-[14px] text-nowrap'>{filteredSegments.map(segment => segment.departure.iataCode)}- {filteredSegments.map(segment => segment.arrival.iataCode)}</td>
-                                                    <td className='px-3 py-2 text-[14px] text-nowrap'>{filteredSegments[0].departure.at}</td>
-                                                    <td className='px-3 py-2 text-[14px] text-nowrap'>{filteredSegments[filteredSegments.length - 1].arrival.at}</td>
-                                                    <td className='px-3 py-2 text-[14px] text-nowrap'>{flight.itineraries[0].duration}</td>
-                                                    <td className='px-3 py-2 text-[14px] text-nowrap'>{flight.price}</td>
+                                                    <td className='px-3 py-1 text-[14px] text-nowrap'>{filteredSegments[0].marketingCarrier} {filteredSegments[0].aircraft}</td>
+                                                    <td className='px-3 py-1 text-[14px] text-nowrap'>{filteredSegments[0].flightNumber}</td>
+                                                    <td className='px-3 py-1 text-[14px] text-nowrap'>{flight.class[0][0]}</td>
+                                                    <td className='px-3 py-1 text-[14px] text-nowrap'>{flight.fareBasis[0][0]}</td>
+                                                    <td className='px-3 py-1 text-[14px] text-nowrap'>{filteredSegments.map(segment => segment.departure.iataCode)}- {filteredSegments.map(segment => segment.arrival.iataCode)}</td>
+                                                    <td className='px-3 py-1 text-[14px] text-nowrap'>{filteredSegments[0].departure.at}</td>
+                                                    <td className='px-3 py-1 text-[14px] text-nowrap'>{filteredSegments[filteredSegments.length - 1].arrival.at}</td>
+                                                    <td className='px-3 py-1 text-[14px] text-nowrap'>{flight.itineraries[0].duration}</td>
+                                                    <td className='px-3 py-1 text-[14px] text-nowrap'>{flight.price}
+                                                    <button type="button" className='bg-[#312e81] text-white text-semibold xsmall:text-[15px] 2xsmall:text-[14px] py-[6px] px-4 rounded-[4px] btn ml-2'>Select</button>
+                                                    </td>
                                                 </tr>
                                             );
                                         } else {
