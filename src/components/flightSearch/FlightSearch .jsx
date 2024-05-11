@@ -7,7 +7,7 @@ const FlightSearch = ({ flightData }) => {
     const [people, setPeople] = useState(1);
     const [searchResults, setSearchResults] = useState([]);
 
-    // console.log("SearchResults:", searchResults);
+     console.log("SearchResults:", searchResults);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -99,18 +99,18 @@ const FlightSearch = ({ flightData }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {searchResults.map((flight, index) => (
-                            <tr key={index}>
-                                <td className='px-8'>{flight.itineraries[0].segments[0].departure.iataCode}</td>
-                                <td className='px-8'>{flight.itineraries[0].segments[0].arrival.iataCode}</td>
-                                <td className='px-8'>{flight.class[0][0]}</td>
-                                <td className='px-8'>{flight.itineraries[0].segments.map(segment => segment.departure.iataCode).join('-')}</td>
-                                <td className='px-8'>{formatDate(flight.itineraries[0].segments[0].departure.at)}</td>
-                                <td className='px-8'>{formatDate(flight.itineraries[0].segments[1].arrival.at)}</td>
-                                <td className='px-8'>{flight.itineraries[0].duration}</td>
-                                <td className='px-8'>{flight.price}</td>
-                            </tr>
-                        ))} */}
+                    {searchResults.map((flight, index) => (
+                                <tr key={index}>
+                                    <td className='px-8'>{flight.itineraries[0].segments[0].flightNumber}</td>
+                                    <td className='px-8'>{flight.itineraries[0].segments[0].departure.iataCode}</td>
+                                    <td className='px-8'>{flight.class[0][0]}</td>
+                                    <td className='px-8'>{flight.itineraries[0].segments.map(segment => segment.departure.iataCode).join('-')}</td>
+                                    <td className='px-8'>{flight.itineraries[0].segments[0].departure.at}</td>
+                                    <td className='px-8'>{flight.itineraries[0].segments[1].arrival.at}</td>
+                                    <td className='px-8'>{flight.itineraries[0].duration}</td>
+                                    <td className='px-8'>{flight.price}</td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             </div>
