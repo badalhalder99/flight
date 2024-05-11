@@ -45,10 +45,23 @@ const FlightSearch = ({ flightData,successMessage }) => {
         });
 
         setSearchResults(results);
+        // Reset the form input values
+        setDeparture('');
+        setArrival('');
+        setDate('');
+        setSelectedDayMinus('');
+        setSelectedDayPlus('');
+        setTime('');
+        setAdt('');
+        setPeople(1);
+        setIsChecked(false);
+        setSelectedOption('');
+
     };
  
     return (
         <div className="flight-search">
+            {/* user search form */}
             <form onSubmit={handleSubmit} className='border-t border-b border-solid border-blue-500 pt-[14px] pb-[6px]'>
                 <div className="formTop grid lg:grid-cols-8 small:grid-cols-4 gap-2">
                     <div className="fromInput">
@@ -92,12 +105,14 @@ const FlightSearch = ({ flightData,successMessage }) => {
                             <option value="monday">Day-</option>
                         </select>
                     </div>
+
                     <div className="day2Input">
                         <select id="day2" value={selectedDayPlus} onChange={(e) => setSelectedDayPlus(e.target.value)} className='border border-solid border-[#000] placeholder-[#000] py-[3px] px-2 rounded-sm w-full xsmall:text-[15px] 2xsmall:text-[14px]'>
                             <option value="">Select Day</option>
                             <option value="monday">Day+</option>
                         </select>
                     </div>
+
                     <div className="day3Input">
                         <select id="day3" value={Time} onChange={(e) => setTime(e.target.value)} className='border border-solid border-[#000] placeholder-[#000] py-[3px] px-2 rounded-sm w-full xsmall:text-[15px] 2xsmall:text-[14px]'>
                             <option value="">Select Time</option>
@@ -128,6 +143,7 @@ const FlightSearch = ({ flightData,successMessage }) => {
                         </select>
                     </div>
                 </div>
+
                 <div className="formBottom flex small:flex-row 2xsmall:flex-col small:justify-between 2xsmall:justify-start small:items-center 2xsmall:items-start pt-2 mt-2 border-t border-solid border-blue-500 small:w-auto 2xsmall:w-full">
                     <div className="checkbox">
                         <label className='flex items-center xsmall:text-[15px] 2xsmall:text-[14px]'>
@@ -179,7 +195,7 @@ const FlightSearch = ({ flightData,successMessage }) => {
                     </div>
                 </div>
             </form>
-
+            {/* Showing the user search data */}
             <div className="dataTable">
                 {searchResults.length > 0 && (
                     <div className="search-results">
